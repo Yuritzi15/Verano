@@ -2,7 +2,7 @@
 #install.packages("readr")
 #install.packages("tidyverse")
 #install.packages("PerformanceAnalytics")
-install.packages("psych")
+#install.packages("psych")
 #cargar paquetes
 library("readr")
 library("tidyverse")
@@ -10,6 +10,7 @@ library(PerformanceAnalytics)
 library(lubridate)
 library(psych)
 library(GGally)
+
 #cargar ruta
 ruta<-choose.files()
 
@@ -20,7 +21,7 @@ datos<-read.csv(ruta)
 datosdoce<-datos %>% filter(hour==12) %>% mutate(fecha =make_date(year,month, dayofmonth))
 
 #Selección de variables para correlación
-datosdoce1<- datosdoce %>% select(dayofweek, hour, CO,NO,NO2,NOX,O3,PM10,PM2_5,pressure,rainfall,humidity, SO2,solar,temperature,velocity,direction)
+datosdoce1<- datosdoce %>% select(CO,NO,NO2,NOX,O3,PM10,PM2_5,pressure,rainfall,humidity, SO2,solar,temperature,velocity,direction)
 
 chart.Correlation(datosdoce1, histogram = TRUE, pch=21, col=4)
 
@@ -47,9 +48,7 @@ pairs.panels(datosviernes, bg="yellow",pch=21,main="Viernes")
 
 #sabado
 datossabado<- datosdoce1 %>% filter(dayofweek==5)
-pairs.panels(datossabado, bg="yellow",pch=21,stars=TRUE,main="Sábado a las 12 horas", cex.labels=TRUE)
+pairs.panels(datossabado, bg="yellow",pch=21,stars=TRUE,main="Sábado a las 12 horas", cex.labels=)
 
 #domingo
 datosdomingo<- datosdoce %>% filter(dayofweek==6)
-
-
